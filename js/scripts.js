@@ -31,7 +31,7 @@ function populateMovieRoster() {
       $(".movie-selector-" + (moviesArray.indexOf(input) + 1)).append('<option value="' + originalValue + '">' + movieTime + '</option>');
     });
     // this populates the poster image path (posterUrl)
-    $(".movie-card" + + (moviesArray.indexOf(input) + 1) + " img").attr("src","img/" + input.posterUrl);
+    $(".movie-card" + (moviesArray.indexOf(input) + 1) + " img").attr("src","img/" + input.posterUrl);
     console.log(input.posterUrl);
   });
 
@@ -49,26 +49,39 @@ function convertTime(numberVal) {
 
 
 function ticketPriceGenerator(buttonVal){
-  var timeofday = parseInt($(".movie-selector-" + buttonVal).val());
-  console.log(timeofday);
-  // var seniorBoolean = $("movie-card" + buttonVal + " input").is(":checked");
-  var seniorBoolean = $(".movie-card" + buttonVal + " input:checkbox").is(":checked");
-  console.log(seniorBoolean);
-  var ticketPrice = function(price) {
-    if (seniorBoolean === true) {
-     return ticketPrice = (price)/2;
-   } else if (seniorBoolean === false && timeofday < 12) {
-     return ticketPrice = (price)-2;
-   } else {
-     return (price);
-   }
-  };
-  ticketPrice(moviesArray[buttonVal-1].basePrice);
-  var myTicket = new Ticket(moviesArray[buttonVal-1].movieTitle, convertTime(timeofday), ticketPrice);
-  console.log(myTicket);
+    if(timeofday = undefined){
+
+    } else {
+    var timeofday = parseInt($(".movie-selector-" + buttonVal).val());
+    console.log(timeofday);
+    // var seniorBoolean = $("movie-card" + buttonVal + " input").is(":checked");
+    var seniorBoolean = $(".movie-card" + buttonVal + " input:checkbox").is(":checked");
+    console.log(seniorBoolean);
+    var ticketPrice = function(price) {
+      if (seniorBoolean === true) {
+       return ticketPrice = "$" + (price / 2).toFixed(2);
+     } else if (seniorBoolean === false && timeofday < 12) {
+       return ticketPrice = "$" + (price - 2).toFixed(2);
+     } else {
+      return ticketPrice = "$" + (price).toFixed(2);
+     }
+    };
+    ticketPrice(moviesArray[buttonVal-1].basePrice);
+    var myTicket = new Ticket(moviesArray[buttonVal-1].movieTitle, convertTime(timeofday), ticketPrice);
+    console.log(myTicket);
+    showTicket(myTicket);
+    }
+  };//function show ticket
+
+
+function showTicket(ticket) {
+  $(".ticket h4").text("");
+  $(".ticket ul").text("");
+  $('.ticket h4').text(ticket.ticketTitle);
+  $('.ticket ul').append('<li> Show Time: ' + ticket.ticketTime + '</li>');
+  $('.ticket ul').append('<li> Ticket Price: ' + ticket.ticketPrice + '</li>');
+
 }
-
-
 
 $(document).ready(function(){
     console.log("jquery says hi");

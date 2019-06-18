@@ -1,20 +1,23 @@
 .col-4 {
-  height: 500px;
+  height: 300px;
 }
 
-.movie-card1 {
-  background-color: red;
-}
-
-.movie-card2 {
-  background-color: blue;
-}
-
-.movie-card3 {
-  background-color: green;
-}
 
 img {
   display: block;
-  height: 200px
+  height: 200px;
+  margin: auto;
+}
+
+h1, .container {
+  text-align: center;
+}
+
+.ticket li{
+  //list-style: none;
+}
+
+.ticket-row {
+  width: 300px;
+  margin: auto;
 }

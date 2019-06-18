@@ -1,0 +1,20 @@
+.col-4 {
+  height: 500px;
+}
+
+.movie-card1 {
+  background-color: red;
+}
+
+.movie-card2 {
+  background-color: blue;
+}
+
+.movie-card3 {
+  background-color: green;
+}
+
+img {
+  display: block;
+  height: 200px
+}
